@@ -26,16 +26,9 @@ let start = Date.now(), end;
 
 cookie.onclick = () => {
     end = Date.now();
-    if (Number(clicker__counter.textContent) % 2 === 0) {
-        cookie.width += 20;
-        cookie.height += 20;
-        clickerCounter();
-        clickerSpeed();
-    } else {
-        cookie.width -= 20;
-        cookie.height -= 20;
-        clickerCounter();
-        clickerSpeed();
-    }
+    cookie.width = Number(clicker__counter.textContent) % 2 === 0 ? 220 : 200;
+    cookie.height = Number(clicker__counter.textContent) % 2 === 0 ? 220 : 200;
+    clickerCounter();
+    clickerSpeed();
     start = Date.now();
 };
