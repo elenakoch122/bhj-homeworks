@@ -1,18 +1,16 @@
-const menuLink = Array.from(document.querySelectorAll(".menu__link"));
-const menu = Array.from(document.querySelectorAll(".menu"));
+const menuLink = Array.from(document.querySelectorAll('.menu__link'));
 
 menuLink.forEach((item) => {
-    item.onclick = () => {
-        let notLinked = false;
-        menu.forEach((element) => {
-            element.classList.remove('menu_active');
-            if (element.parentElement === item.parentElement) {
-                element.classList.add('menu_active');
-                notLinked = true;            
+    let menuSub = item.closest('.menu__item').querySelector('.menu_sub');
+
+    if (menuSub) {
+        item.onclick = () => {
+            let menuActive = document.querySelector('.menu_active');
+            if (menuActive && menuActive !== menuSub) {
+                menuActive.classList.remove('menu_active');
             }
-        });
-        if (notLinked) {
+            menuSub.classList.toggle('menu_active');
             return false;
-        }
-    };
+        };
+    }
 });
