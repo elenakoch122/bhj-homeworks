@@ -1,7 +1,7 @@
 const tooltips = Array.from(document.querySelectorAll('.has-tooltip'));
 
 tooltips.forEach((tooltip) => {
-    tooltip.insertAdjacentHTML('afterEnd', `<div class="tooltip" data-position="bottom">${tooltip.title}</div>`);
+    tooltip.insertAdjacentHTML('afterEnd', `<div class="tooltip" style="top: 0; left: 0">${tooltip.title}</div>`);
     
     tooltip.onclick = (event) => {
         event.preventDefault();
@@ -12,10 +12,7 @@ tooltips.forEach((tooltip) => {
         }
         
         tooltip.nextElementSibling.classList.toggle('tooltip_active');
+        tooltip.nextElementSibling.style.top = tooltip.getBoundingClientRect().top + tooltip.getBoundingClientRect().height + 'px';
+        tooltip.nextElementSibling.style.left = tooltip.getBoundingClientRect().left + 'px';
     };
 });
-
-
-// Повышенный уровень сложности #2 - не поняла про data-position: установила атрибут в подсказку, но ничего не поменялось.
-// Не понимаю как программа должна понять, что data-position="bottom" - означает, что подсказка должна появиться под элементом.
-// Или я неправильно поняла задание?
