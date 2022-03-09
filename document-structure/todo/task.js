@@ -1,24 +1,34 @@
 const taskInput = document.getElementById('task__input');
+const taskButton = document.getElementById('tasks__add');
 const tasksListContainer = document.getElementById('tasks__list');
 
-function enterTask(event) {
-    if (taskInput.value !== '' && event.key === 'Enter') {
-        tasksListContainer.innerHTML += `
-            <div class="task">
-                <div class="task__title">
-                ${taskInput.value}
-                </div>
-                <a href="#" class="task__remove">&times;</a>
+function addTask() {
+    tasksListContainer.insertAdjacentHTML('beforeEnd', `
+        <div class="task">
+            <div class="task__title">
+            ${taskInput.value}
             </div>
-        `;
-        taskInput.value = '';
-        event.preventDefault();
+            <a href="#" class="task__remove">&times;</a>
+        </div>
+    `);
+    
+    taskInput.value = '';
 
-        Array.from(tasksListContainer.children).forEach((task) => {
-            const taskRemove = task.querySelector('.task__remove');
-            taskRemove.onclick = () => task.remove();
-        });
-    }
+    const taskRemove = tasksListContainer.lastElementChild.querySelector('.task__remove');
+    taskRemove.onclick = () => taskRemove.closest('.task').remove();
 }
 
-taskInput.addEventListener('keydown', enterTask);
+// Добавляет задачу при нажатии кнопки "Добавить" и нажатии Enter
+taskButton.addEventListener('click', () => {
+    if (taskInput.value.trim().length !== 0) {
+        addTask();
+    }
+});
+
+// Добавляет задачу при нажатии Enter
+// taskInput.addEventListener('keydown', (event) => {
+//     if (taskInput.value.trim().length !== 0 && event.key === 'Enter') {
+//         addTask();
+//         event.preventDefault();        
+//     }
+// });
