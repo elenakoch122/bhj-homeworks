@@ -31,19 +31,14 @@ products.forEach((product) => {
                     <a href="#" class="cart__product-remove">&times;</a>
                 </div>
             `);
-        }
 
-        Array.from(cartProducts.children).forEach((child) => {
-            const productRemove = child.querySelector('.cart__product-remove');
+            const productRemove = cartProducts.lastElementChild.querySelector('.cart__product-remove');
             productRemove.onclick = () => {
                 productRemove.closest('.cart__product').remove();
                 if (cartProducts.innerText === "") {
                     cart.classList.remove('cart__active');
                 }
             };
-        });
+        }
     };
 });
-
-
-
