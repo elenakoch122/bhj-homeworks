@@ -18,6 +18,8 @@ function addTask() {
     taskRemove.onclick = () => taskRemove.closest('.task').remove();
 }
 
+document.getElementById('tasks__form').onclick = (event) => event.preventDefault();
+
 // Добавляет задачу при нажатии кнопки "Добавить" и нажатии Enter
 taskButton.addEventListener('click', () => {
     if (taskInput.value.trim().length !== 0) {
