@@ -34,8 +34,9 @@ form.addEventListener('submit', (e) => {
             signOut();
         } else {
             alert('Неверный логин или пароль!');
-            Array.from(document.querySelectorAll('.control')).forEach((item) => item.value = '');
         }
+        
+        form.reset();
     });
     
     xhr.open('POST', 'https://netology-slow-rest.herokuapp.com/auth.php');
