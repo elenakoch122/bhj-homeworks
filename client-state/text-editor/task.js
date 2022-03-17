@@ -1,10 +1,7 @@
 const editor = document.getElementById('editor');
 const btnClear = document.querySelector('.button__clear');
-let savedText = localStorage.getItem('text');
 
-if (savedText) {
-    editor.value = savedText;
-} 
+editor.value = localStorage.getItem('text');
 
 editor.addEventListener('input', () => localStorage.setItem('text', editor.value));
 
